@@ -112,4 +112,24 @@ public class AuctionMgrTest {
         Bid new3 = auctionMgr.newBid(item1, buyer2, new Money(11, "eur"));
         assertEquals(emailb2, new3.getBuyer().getEmail());
     }
+    
+    @Test
+    public void bidItemAssociation() {
+        String emails = "ss2@nl";
+        String emailb = "bb@nl";
+
+        String omsch = "omsch_bb";
+        Category cat = new Category("cat9");
+
+        User seller = registrationMgr.registerUser(emails);
+        User buyer  = registrationMgr.registerUser(emailb);
+        
+        Item item1 = sellerMgr.offerItem(seller, cat, omsch);
+        Bid  bid1  = auctionMgr.newBid(item1, buyer, new Money(10, "eur"));
+        Bid  bid2  = item1.getHighestBid();
+        Item item2 = bid1.getItem();
+        
+        assertEquals(bid1, bid2);
+        assertEquals(item1, item2); 
+    }
 }
