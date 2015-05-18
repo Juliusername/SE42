@@ -76,14 +76,15 @@ public class ItemsFromSellerTest {
 
         User userWithItem = item2.getSeller();
         assertEquals(2, userWithItem.numberOfOfferdItems());
-        assertEquals(3, userWithItem.numberOfOfferdItems());
+        //assertEquals(3, userWithItem.numberOfOfferdItems());
         /*
          *  expected: which one of te above two assertions do you expect to be true?
          *  QUESTION:
          *    Explain the result in terms of entity manager and persistance context.
         
             ANSWER:
-            ...
+            The top assertion is to be expected.
+            The seller of item2 is same user as user3, so the number of offerdItems should still be 2.
          */
         
         

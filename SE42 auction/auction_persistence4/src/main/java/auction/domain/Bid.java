@@ -17,12 +17,16 @@ public class Bid implements Serializable {
     private User buyer;
     
     private Money amount;
+    
+    @OneToOne
+    private Item item;
 
     public Bid() {}
     
-    public Bid(User buyer, Money amount) {
+    public Bid(User buyer, Money amount, Item item) {
         this.buyer = buyer;
         this.amount = amount;
+        this.item = item;
         this.time = FontysTime.now();
     }
 
@@ -42,8 +46,7 @@ public class Bid implements Serializable {
         return amount;
     }
     
-    public void setId(Long id)
-    {
+    public void setId(Long id) {
         this.id = id;
     }
     
@@ -57,5 +60,13 @@ public class Bid implements Serializable {
 
     public void setAmount(Money amount) {
         this.amount = amount;
+    }
+    
+    public Item getItem() {
+        return item;
+    }
+    
+    public void setItem(Item item) {
+        this.item = item;
     }
 }

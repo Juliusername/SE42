@@ -30,7 +30,7 @@ public class Item implements Comparable, Serializable
     
     private String description;
     
-    @OneToOne(cascade=CascadeType.REMOVE)
+    @OneToOne(mappedBy="item")
     private Bid highest;
 
     public Item() {}
@@ -87,7 +87,8 @@ public class Item implements Comparable, Serializable
         if (highest != null && highest.getAmount().compareTo(amount) >= 0) {
             return null;
         }
-        highest = new Bid(buyer, amount);
+               
+        highest = new Bid(buyer, amount, this);
         return highest;
     }
 
