@@ -18,7 +18,7 @@ public class User implements Serializable {
     private Long Id;
     @Column(unique = true)
     private String email;
-    @OneToMany
+    @OneToMany(mappedBy="seller")
     private Set<Item> offeredItems;
 
     public User(){}

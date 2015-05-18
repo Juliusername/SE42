@@ -46,13 +46,20 @@ public class ItemsFromSellerTest {
 
        
         // test number of items belonging to user1
-        assertEquals(0, user1.numberOfOfferdItems());
+        //assertEquals(0, user1.numberOfOfferdItems());
         assertEquals(1, user1.numberOfOfferdItems());
         
         /*
          *  expected: which one of te above two assertions do you expect to be true?
          *  QUESTION:
          *    Explain the result in terms of entity manager and persistance context.
+        
+            ANSWER:
+            The bottom assertion is expected to be true. One Item is created and commited in the entity manager after which it 
+            is automaticly added to the offerdItems list of the item's seller (User).
+            This means there the number of offeredItems should be 1.
+        
+            
          */
          
          
@@ -74,6 +81,9 @@ public class ItemsFromSellerTest {
          *  expected: which one of te above two assertions do you expect to be true?
          *  QUESTION:
          *    Explain the result in terms of entity manager and persistance context.
+        
+            ANSWER:
+            ...
          */
         
         
@@ -105,7 +115,14 @@ public class ItemsFromSellerTest {
         assertFalse(it11.hasNext());
 
         // Explain difference in above two tests for te iterator of 'same' user
-
+        
+        //ANSWER
+        //item10 is added to user10 so user10 has 1 item in it's offerdItems list.
+        //user10's email is used for user11, which makes it the same persistant user
+        //it11 is user11's iterator.
+        //When it11.hasNext() is called first, the offerdItems list contains one item so it returns true
+        //When it11.next() is called, the index of the iterator is increased by
+        //This means that there is no next item in the offerdItems list, so it returns false
         
         
         User user20 = registrationMgr.getUser(email);
