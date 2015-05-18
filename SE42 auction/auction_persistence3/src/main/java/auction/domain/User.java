@@ -16,8 +16,7 @@ public class User implements Serializable {
     @Column(unique = true)
     private String email;
 
-    public User(){
-    }
+    public User(){}
     
     public User(String email) {
         this.email = email;
@@ -50,13 +49,11 @@ public class User implements Serializable {
         
         try {
             User user = (User)object;
-            if (user.getEmail().equals(email))
-            {
+            if (user.getEmail().equals(email)) {
                 return true;
             }
         }
         catch (Exception e) {
-            
         }
         return false;
     }

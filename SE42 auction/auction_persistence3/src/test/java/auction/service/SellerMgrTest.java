@@ -12,9 +12,17 @@ import org.junit.Test;
 import auction.domain.Category;
 import auction.domain.Item;
 import auction.domain.User;
+import java.sql.SQLException;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import util.DatabaseCleaner;
 
 public class SellerMgrTest {
 
+    private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("nl.fhict.se42_auction_jar_1.0-SNAPSHOTPU");
+    private EntityManager em;
+    
     private AuctionMgr auctionMgr;
     private RegistrationMgr registrationMgr;
     private SellerMgr sellerMgr;
@@ -24,6 +32,18 @@ public class SellerMgrTest {
         registrationMgr = new RegistrationMgr();
         auctionMgr = new AuctionMgr();
         sellerMgr = new SellerMgr();
+        
+        em = emf.createEntityManager();
+        DatabaseCleaner dc = new DatabaseCleaner(em);
+        
+        try
+        {
+            dc.clean();
+        }
+        catch(SQLException ex)
+        {
+            System.out.println("SQLException: " + ex.getMessage());
+        }
     }
 
     /**

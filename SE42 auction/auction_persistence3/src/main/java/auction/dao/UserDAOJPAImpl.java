@@ -23,7 +23,7 @@ public class UserDAOJPAImpl implements UserDAO {
 
     @Override
     public void create(User user) {
-         if (findByEmail(user.getEmail()) != null) {
+        if (findByEmail(user.getEmail()) != null) {
             throw new EntityExistsException();
         }
         em.persist(user);
@@ -54,7 +54,7 @@ public class UserDAOJPAImpl implements UserDAO {
             user = (User) q.getSingleResult();
         }
         catch (NoResultException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             user = null;
         }
         return user;

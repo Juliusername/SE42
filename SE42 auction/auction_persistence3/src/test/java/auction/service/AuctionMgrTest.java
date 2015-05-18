@@ -11,10 +11,19 @@ import auction.domain.Bid;
 import auction.domain.Category;
 import auction.domain.Item;
 import auction.domain.User;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import util.DatabaseCleaner;
 
 public class AuctionMgrTest {
 
+    private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("nl.fhict.se42_auction_jar_1.0-SNAPSHOTPU");
+    private EntityManager em;
+    
     private AuctionMgr auctionMgr;
     private RegistrationMgr registrationMgr;
     private SellerMgr sellerMgr;
@@ -24,11 +33,24 @@ public class AuctionMgrTest {
         registrationMgr = new RegistrationMgr();
         auctionMgr = new AuctionMgr();
         sellerMgr = new SellerMgr();
+        
+        em = emf.createEntityManager();
+        DatabaseCleaner dc = new DatabaseCleaner(em);
+        
+        try
+        {
+            dc.clean();
+        }
+        catch(SQLException ex)
+        {
+            System.out.println("SQLException: " + ex.getMessage());
+        }
     }
 
     @Test
     public void getItem() {
-
+        System.out.println("ActionMgrTest: getItem()");
+        
         String email = "xx2@nl";
         String omsch = "omsch";
 
@@ -42,6 +64,8 @@ public class AuctionMgrTest {
 
     @Test
     public void findItemByDescription() {
+        System.out.println("ActionMgrTest: findItemByDescription()");
+        
         String email3 = "xx3@nl";
         String omsch = "omsch";
         String email4 = "xx4@nl";
@@ -53,10 +77,10 @@ public class AuctionMgrTest {
         Item item1 = sellerMgr.offerItem(seller3, cat, omsch);
         Item item2 = sellerMgr.offerItem(seller4, cat, omsch);
 
-        ArrayList<Item> res = (ArrayList<Item>) auctionMgr.findItemByDescription(omsch2);
+        List<Item> res = auctionMgr.findItemByDescription(omsch2);
         assertEquals(0, res.size());
 
-        res = (ArrayList<Item>) auctionMgr.findItemByDescription(omsch);
+        res = auctionMgr.findItemByDescription(omsch);
         assertEquals(2, res.size());
 
     }
@@ -64,6 +88,8 @@ public class AuctionMgrTest {
     @Test
     public void newBid() {
 
+        System.out.println("ActionMgrTest: newBid()");
+        
         String email = "ss2@nl";
         String emailb = "bb@nl";
         String emailb2 = "bb2@nl";
