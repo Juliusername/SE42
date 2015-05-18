@@ -19,6 +19,7 @@ public class Bid implements Serializable {
     private Money amount;
     
     @OneToOne
+    @JoinColumn(nullable = false)
     private Item item;
 
     public Bid() {}

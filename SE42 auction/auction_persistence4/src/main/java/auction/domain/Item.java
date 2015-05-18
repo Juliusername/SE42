@@ -1,7 +1,7 @@
 package auction.domain;
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -36,10 +36,12 @@ public class Item implements Comparable, Serializable
     public Item() {}
     
     public Item(User seller, Category category, String description) {
-        this.setSeller(seller);
+        this.seller = seller;
         this.category = category;
         this.description = description;
         this.highest = null;
+        
+        this.seller.addItem(this);
     }
 
     public Long getId() {
@@ -97,24 +99,33 @@ public class Item implements Comparable, Serializable
         return -1;
     }
 
+    @Override
     public boolean equals(Object o) {
-        if (o == null) {
+        if (o == null || !(o instanceof Item)) {
             return false;
         }
         
-        try {
-            Item item = (Item)o;
-            if (item.getDescription().equals(this.description)) {
-                return true;
-            }
-        }
-        catch (Exception e) {
-        }
-        return false;
+        Item item = (Item) o;
+        
+        // aangezien id pas aangemaakt wordt als deze toegevoegd wordt aan de database
+        // en de andere attributen buiten de constructor geset worden (dus niet persee
+        // geinitialiseerd zijn) alleen de attributen binnen de constructor gebruikt.
+        
+        return (this.seller.equals(item.getSeller())
+             && this.category.equals(item.getCategory())
+             && this.description.equals(item.getDescription())
+        );
     }
 
+    @Override
     public int hashCode() {
-        //TODO
-        return 0;
+        
+        // aangezien id pas aangemaakt wordt als deze toegevoegd wordt aan de database
+        // en de andere attributen buiten de constructor geset worden (dus niet persee
+        // geinitialiseerd zijn) alleen de attributen binnen de constructor gebruikt.
+        
+        return this.seller.hashCode()
+             * this.category.hashCode()
+             * this.description.hashCode();
     }
 }

@@ -24,7 +24,7 @@ public class SellerMgr {
         EntityManager em = emf.createEntityManager();
         ItemDAO itemDAO = new ItemDAOJPAImpl(em);
         
-        Item item = new Item(seller, cat, description);;
+        Item item = new Item(seller, cat, description);
         
         em.getTransaction().begin();
         try {

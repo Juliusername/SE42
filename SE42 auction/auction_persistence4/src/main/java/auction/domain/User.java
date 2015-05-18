@@ -11,13 +11,15 @@ import javax.persistence.*;
     @NamedQuery(name = "User.count", query = "select count(u) from User as u"),
     @NamedQuery(name = "User.findByEmail", query = "select u from User as u where u.email = :email")
 })
-public class User implements Serializable {
-
+public class User implements Serializable
+{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
+    
     @Column(unique = true)
     private String email;
+    
     @OneToMany(mappedBy="seller")
     private Set<Item> offeredItems;
 
