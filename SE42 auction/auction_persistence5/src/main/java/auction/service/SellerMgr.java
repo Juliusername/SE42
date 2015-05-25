@@ -23,24 +23,25 @@ public class SellerMgr {
      *         en met de beschrijving description
      */
     public Item offerItem(User seller, Category cat, String description) {
-        EntityManager em = emf.createEntityManager();
-        ItemDAO itemDAO = new ItemDAOJPAImpl(em);
-        
-        Item item = new Item(seller, cat, description);
-        
-        em.getTransaction().begin();
-        try {
-            
-            itemDAO.create(item);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            em.getTransaction().rollback();
-        } finally {
-            em.close();
-        }
-        
-        return item;
+//        EntityManager em = emf.createEntityManager();
+//        ItemDAO itemDAO = new ItemDAOJPAImpl(em);
+//        
+//        Item item = new Item(seller, cat, description);
+//        
+//        em.getTransaction().begin();
+//        try {
+//            
+//            itemDAO.create(item);
+//            em.getTransaction().commit();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            em.getTransaction().rollback();
+//        } finally {
+//            em.close();
+//        }
+//        
+//        return item;
+        return null;
     }
     
     public Furniture offerFurniture(User seller, Category cat, String description, String material) {

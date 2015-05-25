@@ -19,8 +19,8 @@ import nl.fontys.util.Money;
     @NamedQuery(name = "Item.find", query = "select i from Item as i where i.id = :ID"),
     @NamedQuery(name = "Item.findByDescription", query = "select i from Item as i where i.description = :description")
 })
-@Inheritance (strategy = InheritanceType.TABLE_PER_CLASS)
-public class Item implements Comparable, Serializable
+@Inheritance (strategy = InheritanceType.JOINED)
+public abstract class Item implements Comparable, Serializable
 {
     @Id  @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;

@@ -56,28 +56,28 @@ public class FurnitureAndPaintingTest {
         assertFalse(it.hasNext());
 
         //de volgende code verwijderen als Item abstract is
-        Item item3 = sellerMgr.offerItem(u1, new Category("boek"), "The science of Discworld");
-        it = registrationMgr.getUser(iemand1).getOfferedItems();
-        assertTrue(it.hasNext());
-        it.next();
-        assertTrue(it.hasNext());
-        it.next();
-        assertTrue(it.hasNext());
-        it.next();
-        assertFalse(it.hasNext());
-
-        assertNull(furniture1.getHighestBid());
-        Bid bid = auctionMgr.newBid(furniture1, u2, new Money(150000, Money.EURO));
-        assertNotNull(furniture1.getHighestBid());
-        
-        Item foundFurniture = auctionMgr.getItem(furniture1.getId());
-        
-        System.out.println("Bid: " + bid.getBuyer().getEmail() + ", " + bid.getAmount().getValue() + ", " + bid.getItem().getDescription());
-        System.out.println("foundFurniture: " + foundFurniture.getHighestBid().getBuyer().getEmail() + ", " + foundFurniture.getHighestBid().getAmount().getValue() + ", " + foundFurniture.getHighestBid().getItem().getDescription());
-        
-        int i = 3;
-        assertEquals(foundFurniture.getHighestBid(), bid);
-        assertTrue(foundFurniture.getClass() == Furniture.class);
+//        Item item3 = sellerMgr.offerItem(u1, new Category("boek"), "The science of Discworld");
+//        it = registrationMgr.getUser(iemand1).getOfferedItems();
+//        assertTrue(it.hasNext());
+//        it.next();
+//        assertTrue(it.hasNext());
+//        it.next();
+//        assertTrue(it.hasNext());
+//        it.next();
+//        assertFalse(it.hasNext());
+//
+//        assertNull(furniture1.getHighestBid());
+//        Bid bid = auctionMgr.newBid(furniture1, u2, new Money(150000, Money.EURO));
+//        assertNotNull(furniture1.getHighestBid());
+//        
+//        Item foundFurniture = auctionMgr.getItem(furniture1.getId());
+//        
+//        System.out.println("Bid: " + bid.getBuyer().getEmail() + ", " + bid.getAmount().getValue() + ", " + bid.getItem().getDescription());
+//        System.out.println("foundFurniture: " + foundFurniture.getHighestBid().getBuyer().getEmail() + ", " + foundFurniture.getHighestBid().getAmount().getValue() + ", " + foundFurniture.getHighestBid().getItem().getDescription());
+//        
+//        int i = 3;
+//        assertEquals(foundFurniture.getHighestBid(), bid);
+//        assertTrue(foundFurniture.getClass() == Furniture.class);
     }
 }
 
@@ -127,6 +127,44 @@ ID      EMAIL
 2       iemand2@def
 */
 
+
+/*
+Vraag 8 - InheritanceType.TABLE_PER_CLASS:
+==========================================
+ITEM
+SELLER_ID
+(Leeg)
+
+PAINTING
+ID      CATEGORY        DESCRIPTION     PAINTER     TITLE       SELLER_ID
+2       [BLOB - 86 B]   omsch1          Rembrandt   Nachtwacht  1
+
+FURNITURE
+ID      CATEGORY        DESCRIPTION     MATERIAL    SELLER_ID
+1       [BLOB - 86 B]   broodkast       ijzer       1
+
+
+Vraag 8 - InheritanceType.JOINED
+================================
+
+ITEM
+ID	DTYPE           CATEGORY	DESCRIPTION	SELLER_ID
+1	Furniture	[BLOB - 86 B]	broodkast	1 [->]
+2	Painting	[BLOB - 86 B]	omsch1          1 [->]
+
+PAINTING
+ID	PAINTER         TITLE
+2 [->]	Rembrandt	Nachtwacht 
+
+FURNITURE
+ID	MATERIAL
+1 [->]	ijzer
+
+
+Bij Table per class worden de overgeerfde attributen (niet genormaliseerd) in de eigen klasse gezet.
+Bij Joined worden te tabellen painting en furniture samengevoegd (JOIN) met de tabel item (wel genormaliseerd)
+
+*/
 /*
 
 /*
