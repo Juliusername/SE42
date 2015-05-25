@@ -22,7 +22,7 @@ import nl.fontys.util.Money;
 @Inheritance (strategy = InheritanceType.TABLE_PER_CLASS)
 public class Item implements Comparable, Serializable
 {
-    @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id  @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
     
     @ManyToOne
