@@ -127,6 +127,38 @@ ID      EMAIL
 2       iemand2@def
 */
 
+/*
+
+/*
+Vraag 7 - Noteer de inhoud van de database na de test
+
+BID
+ID    AMOUNT        TIME            BUYER_ID    ITEM_ID
+1     [BLOB-95 B]   [BLOB-64 B]     2           1
+
+ITEM
+ID      CATEGORY    DESCRIPTION                 SELLER_ID
+3       [BLOB-86 B] The science of Discworld    1 
+
+FURNITURE
+ID      CATEGORY    DESCRIPTION     SELLER_ID   MATERIAL
+1       [BLOB-86 B] broodkast       1           ijzer
+
+PAINTING
+ID      CATEGORY    DESCRIPTION     SELLER_ID   PAINTER     TITLE
+2       [BLOB-86 B] omsch1          1           Rembrandt   Nachtwacht
+
+USER
+ID      EMAIL
+1       iemand1@def
+2       iemand2@def
+
+SEQUENCE
+SEQ_NAME        SEQ_COUNT
+SEQ_GEN_TABLE   50
+*/
+
+
 
 /*
 Vraag 8 - InheritanceType.TABLE_PER_CLASS:
@@ -164,34 +196,4 @@ ID	MATERIAL
 Bij Table per class worden de overgeerfde attributen (niet genormaliseerd) in de eigen klasse gezet.
 Bij Joined worden te tabellen painting en furniture samengevoegd (JOIN) met de tabel item (wel genormaliseerd)
 
-*/
-/*
-
-/*
-Vraag 7 - Noteer de inhoud van de database na de test
-
-BID
-ID    AMOUNT        TIME            BUYER_ID    ITEM_ID
-1     [BLOB-95 B]   [BLOB-64 B]     2           1
-
-ITEM
-ID      CATEGORY    DESCRIPTION                 SELLER_ID
-3       [BLOB-86 B] The science of Discworld    1 
-
-FURNITURE
-ID      CATEGORY    DESCRIPTION     SELLER_ID   MATERIAL
-1       [BLOB-86 B] broodkast       1           ijzer
-
-PAINTING
-ID      CATEGORY    DESCRIPTION     SELLER_ID   PAINTER     TITLE
-2       [BLOB-86 B] omsch1          1           Rembrandt   Nachtwacht
-
-USER
-ID      EMAIL
-1       iemand1@def
-2       iemand2@def
-
-SEQUENCE
-SEQ_NAME        SEQ_COUNT
-SEQ_GEN_TABLE   50
 */
