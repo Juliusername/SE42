@@ -51,7 +51,7 @@ public class ItemDAOJPAImpl implements ItemDAO {
         System.out.println("---Searching for item with id: " + id);
         
         Query q = em.createNamedQuery("Item.find", Item.class);
-        q.setParameter("id", id);
+        q.setParameter("ID", id);
         Item item = null;
         try {
             item = (Item) q.getSingleResult();
