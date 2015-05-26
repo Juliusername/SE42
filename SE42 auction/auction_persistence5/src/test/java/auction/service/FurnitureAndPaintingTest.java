@@ -194,6 +194,6 @@ ID	MATERIAL
 
 
 Bij Table per class worden de overgeerfde attributen (niet genormaliseerd) in de eigen klasse gezet.
-Bij Joined worden te tabellen painting en furniture samengevoegd (JOIN) met de tabel item (wel genormaliseerd)
+Bij Joined worden de tabellen painting en furniture samengevoegd (JOIN) met de tabel item (wel genormaliseerd)
 
 */

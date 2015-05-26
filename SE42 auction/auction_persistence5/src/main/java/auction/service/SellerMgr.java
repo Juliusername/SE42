@@ -23,6 +23,8 @@ public class SellerMgr {
      *         en met de beschrijving description
      */
     public Item offerItem(User seller, Category cat, String description) {
+//        UITGECOMMENT VOOR VRAAG 8 
+//
 //        EntityManager em = emf.createEntityManager();
 //        ItemDAO itemDAO = new ItemDAOJPAImpl(em);
 //        
