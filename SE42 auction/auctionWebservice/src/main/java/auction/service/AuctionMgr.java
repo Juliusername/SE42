@@ -70,6 +70,11 @@ public class AuctionMgr  {
         em.getTransaction().begin();
         try {
             bid = item.newBid(buyer, amount);
+            
+            if (bid != null) {
+                itemDAO.edit(item);
+            }
+            
             em.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();

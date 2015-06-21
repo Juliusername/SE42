@@ -1,5 +1,6 @@
 package auction.service;
 
+import java.util.List;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
@@ -16,6 +17,11 @@ public class SellerMgrTest {
     auction.service.Auction auctionMgr = auctionService.getAuctionPort();
     auction.service.Auction sellerMgr  = auctionService.getAuctionPort();
   
+    @Before
+    public void cleanDatabase() {
+        registrationMgr.cleanDatabase();
+    }
+    
     /**
      * Test of offerItem method, of class SellerMgr.
      */
@@ -51,8 +57,8 @@ public class SellerMgrTest {
         assertTrue(res);
         int count = auctionMgr.findItemByDescription(omsch).size();
         assertEquals(0, count);
-        
-            // revoke after bid has been made
+
+        // revoke after bid has been made
         Item item2 = sellerMgr.offerItem(seller, cat, omsch2);
         
         Money amount = new Money();

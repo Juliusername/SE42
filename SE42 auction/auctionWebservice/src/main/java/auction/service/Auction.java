@@ -7,10 +7,15 @@ package auction.service;
 
 
 import auction.domain.*;
+import java.sql.SQLException;
 import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.xml.ws.Endpoint;
+import nl.fontys.util.DatabaseCleaner;
 import nl.fontys.util.Money;
 
 /**
@@ -22,6 +27,20 @@ public class Auction
 {
     private final AuctionMgr auctionMgr = new AuctionMgr();
     private final SellerMgr  sellerMgr  = new SellerMgr();
+    
+    @WebMethod
+    public void cleanDatabase() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("nl.fhict.se42_auction_jar_1.0-SNAPSHOTPU");
+        EntityManager em = emf.createEntityManager();
+        
+        DatabaseCleaner dc = new DatabaseCleaner(em);
+        try {
+            dc.clean();
+        }
+        catch(SQLException ex) {
+            System.out.println("SQLException: " + ex.getMessage());
+        }
+    }
     
     @WebMethod
     public Item getItem(long id) {

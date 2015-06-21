@@ -1,4 +1,4 @@
-package util;
+package nl.fontys.util;
 
 import auction.domain.Bid;
 import auction.domain.Item;
@@ -10,8 +10,8 @@ import javax.persistence.metamodel.EntityType;
 public class DatabaseCleaner {
 
     private static final Class<?>[] ENTITY_TYPES = {
-        Item.class,
         Bid.class,
+        Item.class,
         User.class,
         
     };

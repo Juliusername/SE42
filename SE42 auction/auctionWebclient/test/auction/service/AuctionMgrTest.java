@@ -3,6 +3,7 @@ package auction.service;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import java.util.List;
+import org.junit.Before;
 
 public class AuctionMgrTest {
 
@@ -13,7 +14,10 @@ public class AuctionMgrTest {
     auction.service.Auction auctionMgr = auctionService.getAuctionPort();
     auction.service.Auction sellerMgr  = auctionService.getAuctionPort();
     
-
+    @Before
+    public void cleanDatabase() {
+        registrationMgr.cleanDatabase();
+    }
 
     @Test
     public void getItem() {
@@ -77,21 +81,21 @@ public class AuctionMgrTest {
         Money amount1 = new Money();
         amount1.setCents(10);
         amount1.setCurrency("eur");
-        Bid new1 = auctionMgr.newBid(item1, buyer, amount1);
+        Bid new1 = auctionMgr.newBid(auctionMgr.getItem(item1.getId()), buyer, amount1);
         assertEquals(emailb, new1.getBuyer().getEmail());
 
         Money amount2 = new Money();
         amount2.setCents(9);
         amount2.setCurrency("eur");
         // lager bod
-        Bid new2 = auctionMgr.newBid(item1, buyer2, amount2);
+        Bid new2 = auctionMgr.newBid(auctionMgr.getItem(item1.getId()), buyer2, amount2);
         assertNull(new2);
 
         Money amount3 = new Money();
         amount3.setCents(11);
         amount3.setCurrency("eur");
         // hoger bod
-        Bid new3 = auctionMgr.newBid(item1, buyer2, amount3);
+        Bid new3 = auctionMgr.newBid(auctionMgr.getItem(item1.getId()), buyer2, amount3);
         assertEquals(emailb2, new3.getBuyer().getEmail());
     }
 }

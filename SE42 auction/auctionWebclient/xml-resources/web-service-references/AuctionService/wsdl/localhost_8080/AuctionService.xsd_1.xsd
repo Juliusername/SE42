@@ -2,6 +2,10 @@
 
 <xs:element name="category" type="tns:category"></xs:element>
 
+<xs:element name="cleanDatabase" type="tns:cleanDatabase"></xs:element>
+
+<xs:element name="cleanDatabaseResponse" type="tns:cleanDatabaseResponse"></xs:element>
+
 <xs:element name="findItemByDescription" type="tns:findItemByDescription"></xs:element>
 
 <xs:element name="findItemByDescriptionResponse" type="tns:findItemByDescriptionResponse"></xs:element>
@@ -93,16 +97,12 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="findItemByDescription">
-<xs:sequence>
-<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
-</xs:sequence>
+<xs:complexType name="cleanDatabase">
+<xs:sequence></xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="findItemByDescriptionResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:item" minOccurs="0" maxOccurs="unbounded"></xs:element>
-</xs:sequence>
+<xs:complexType name="cleanDatabaseResponse">
+<xs:sequence></xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="revokeItem">
@@ -114,6 +114,18 @@
 <xs:complexType name="revokeItemResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="findItemByDescription">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="findItemByDescriptionResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:item" minOccurs="0" maxOccurs="unbounded"></xs:element>
 </xs:sequence>
 </xs:complexType>
 
